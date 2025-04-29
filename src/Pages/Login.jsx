@@ -1,43 +1,48 @@
 import React, { useState } from "react";
-import {auth} from "../config/firebase";
+import { auth } from "../config/firebase";
+import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
-  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Email = ", email); // Now it will log the correct email
-    console.log("password = ", password); // Now it will log the correct email
-    console.log("Login Button Clicked");
-  };
+  const navigate = useNavigate();
 
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
-    event.target.reset(); // empty form values
-  };
-  const handleChangePassword = (event) => {
-    setPassword(event.target.value);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (email === "" || password === "") {
+      setMsg("*Please fill all the fields");
+      return;
+    }
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/"); // Navigate only on success
+    } catch (error) {
+      console.error("Login error:", error);
+      setMsg("*Invalid email or password");
+    }
   };
 
   return (
     <div className="login">
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="email"
-            value={email}
-            onChange={handleChangeEmail}
-            required
-          />
-          <input
-            type="password"
-            value={password}
-            onChange={handleChangePassword}
-            required
-          />
-        </div>
-        <button type="submit">Submit</button>
+      <p className="text-red-500">{msg}</p>
+      <form onSubmit={handleLogin}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
       </form>
     </div>
   );

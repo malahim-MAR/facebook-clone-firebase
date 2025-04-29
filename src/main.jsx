@@ -9,6 +9,7 @@ import VideoFeed from "./Pages/NewsFeed";
 import NewsFeed from "./Pages/NewsFeed";
 import Profile from "./Pages/Profile";
 import Groups from "./Pages/Groups";
+import NewPost from "./Pages/NewPost";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "NewsFeed",
         element: <NewsFeed />,
+      },
+      {
+        path: "AddNewPost",
+        element: <NewPost />,
       },
       {
         path: "Profile",
