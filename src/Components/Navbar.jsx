@@ -120,7 +120,7 @@ const Navbar = () => {
         </Link>
         <input style={{width:220}} type="text" placeholder="Search ..." className="input" />
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center  hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
             <Link to="/">
