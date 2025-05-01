@@ -62,6 +62,8 @@ import { db } from "../config/firebase";
 import { FiHeart, FiMessageCircle, FiShare2 } from "react-icons/fi";
 import { formatDistanceToNow } from "date-fns";
 import { motion } from "framer-motion";
+import { FaCirclePlus } from "react-icons/fa6";
+import ProfileImage from "./ProfileImage";
 
 const MyFeed = () => {
   const [posts, setPosts] = useState([]);
@@ -106,11 +108,17 @@ const MyFeed = () => {
           <div className="flex items-center gap-3">
             <div className="avatar placeholder">
               <div className="bg-neutral text-neutral-content rounded-full w-12">
-                <span className="text-lg">Y</span>
+                <span className="text-lg">
+                  <ProfileImage />
+                </span>
               </div>
             </div>
-            <button className="btn btn-ghost flex-1 justify-start text-gray-400 hover:bg-base-300/50">
+            <button className="btn btn-ghost flex-1 justify-start text-gray-400 hover:bg-base-300/50 border border-white">
               What's on your mind?
+            </button>
+            <button className="btn">
+              <FaCirclePlus />
+              Add New Post
             </button>
           </div>
         </div>
@@ -135,6 +143,8 @@ const MyFeed = () => {
                 <div className="avatar placeholder">
                   <div className="bg-neutral text-neutral-content rounded-full w-12">
                     <span className="text-lg">
+                      <ProfileImage />
+
                       {post.username?.charAt(0).toUpperCase()}
                     </span>
                   </div>

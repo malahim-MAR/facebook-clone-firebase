@@ -44,6 +44,7 @@
 // export default SidebarRight;
 // SidebarRight.jsx
 import React from "react";
+import ProfileImage from "./ProfileImage";
 
 const SidebarRight = () => {
   return (
@@ -60,7 +61,9 @@ const SidebarRight = () => {
             >
               <div className="avatar placeholder">
                 <div className="bg-neutral text-neutral-content rounded-full w-10">
-                  <span>U</span>
+                  <span>
+                    <ProfileImage />
+                  </span>
                 </div>
               </div>
               <div>
