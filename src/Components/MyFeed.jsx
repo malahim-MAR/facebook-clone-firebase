@@ -64,6 +64,7 @@ import { formatDistanceToNow } from "date-fns";
 import { motion } from "framer-motion";
 import { FaCirclePlus } from "react-icons/fa6";
 import ProfileImage from "./ProfileImage";
+import { Link } from "react-router-dom";
 
 const MyFeed = () => {
   const [posts, setPosts] = useState([]);
@@ -117,8 +118,10 @@ const MyFeed = () => {
               What's on your mind?
             </button>
             <button className="btn">
-              <FaCirclePlus />
-              Add New Post
+              <Link to="/AddNewPost" className="flex items-center">
+                <FaCirclePlus />
+                <p className="px-2">Add New Post</p>
+              </Link>
             </button>
           </div>
         </div>
