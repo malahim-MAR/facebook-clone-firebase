@@ -24,12 +24,10 @@ li {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
 }
-.side-bar-text {
+/* .side-bar-text {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
 }
-
-/* Login Page css Custom */
 
 .login {
   border: 2px solid white;
@@ -59,4 +57,4 @@ li {
   width: 120px;
   height: 50px;
   cursor: pointer;
-}
+} */
