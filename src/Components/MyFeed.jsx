@@ -65,10 +65,24 @@ import { motion } from "framer-motion";
 import { FaCirclePlus } from "react-icons/fa6";
 import ProfileImage from "./ProfileImage";
 import { Link } from "react-router-dom";
+import { doc, updateDoc, increment } from "firebase/firestore";
 
 const MyFeed = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const handleLike = async (postId) => {
+    const postRef = doc(db, "posts", postId); // adjust collection name if different
+
+    try {
+      await updateDoc(postRef, {
+        likes: increment(1), // use -1 to decrement if unliking
+      });
+      console.log("Like updated");
+    } catch (err) {
+      console.error("Error updating like:", err);
+    }
+  };
 
   useEffect(() => {
     const q = query(
