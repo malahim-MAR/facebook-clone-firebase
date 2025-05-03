@@ -72,13 +72,22 @@ const MyFeed = () => {
   const [loading, setLoading] = useState(true);
 
   const handleLike = async (postId) => {
-    const postRef = doc(db, "posts", postId); // adjust collection name if different
+    const postRef = doc(db, "posts", postId); // Adjust collection name if different
 
     try {
       await updateDoc(postRef, {
-        likes: increment(1), // use -1 to decrement if unliking
+        likes: increment(1), // Increase likes by 1
       });
       console.log("Like updated");
+
+      // Update the state locally without re-fetching all posts
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === postId
+            ? { ...post, postLikes: post.postLikes + 1 } // Update the like count
+            : post
+        )
+      );
     } catch (err) {
       console.error("Error updating like:", err);
     }
@@ -197,11 +206,18 @@ const MyFeed = () => {
               )}
 
               {/* Post Actions */}
+              {/* Post Actions */}
               <div className="flex items-center justify-between mt-4 px-2">
                 <div className="flex items-center gap-4">
-                  <button className="btn btn-ghost btn-sm gap-2 hover:bg-base-300/50">
+                  <button
+                    onClick={() => handleLike(post.id)} // Call handleLike when clicked
+                    className="btn btn-ghost btn-sm gap-2 hover:bg-base-300/50"
+                  >
                     <FiHeart className="w-5 h-5 text-red-400" />
-                    <span className="text-gray-400">{post.postLikes || 0}</span>
+                    <span className="text-gray-400">
+                      {post.likes || 0}
+                    </span>{" "}
+                    {/* Display likes */}
                   </button>
                   <button className="btn btn-ghost btn-sm gap-2 hover:bg-base-300/50">
                     <FiMessageCircle className="w-5 h-5 text-blue-400" />
