@@ -67,14 +67,14 @@ const Signup = () => {
   const navigate = useNavigate();
 
   // Password strength calculator
-  const calculatePasswordStrength = (pass) => {
-    let strength = 0;
-    if (pass.length >= 6) strength += 1;
-    if (pass.match(/[A-Z]/)) strength += 1;
-    if (pass.match(/[0-9]/)) strength += 1;
-    if (pass.match(/[^A-Za-z0-9]/)) strength += 1;
-    return strength;
-  };
+  // const calculatePasswordStrength = (pass) => {
+  //   let strength = 0;
+  //   if (pass.length >= 6) strength += 1;
+  //   if (pass.match(/[A-Z]/)) strength += 1;
+  //   if (pass.match(/[0-9]/)) strength += 1;
+  //   if (pass.match(/[^A-Za-z0-9]/)) strength += 1;
+  //   return strength;
+  // };
 
   const handleSignup = async (e) => {
     e.preventDefault();
